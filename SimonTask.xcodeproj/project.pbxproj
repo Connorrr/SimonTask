@@ -36,6 +36,8 @@
 		BF10700021BF41ED00DC6207 /* jasmine.jpg in Resources */ = {isa = PBXBuildFile; fileRef = BF106FFE21BF41ED00DC6207 /* jasmine.jpg */; };
 		BF10700121BF41ED00DC6207 /* AWholeNewWorld.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = BF106FFF21BF41ED00DC6207 /* AWholeNewWorld.mp3 */; };
 		BF10700421BF791F00DC6207 /* LetterNumberStim.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF10700321BF791F00DC6207 /* LetterNumberStim.swift */; };
+		BF2082E3229E4F0200A66D69 /* RightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = BF2082E1229E4F0100A66D69 /* RightArrow.png */; };
+		BF2082E4229E4F0200A66D69 /* LeftArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = BF2082E2229E4F0100A66D69 /* LeftArrow.png */; };
 		BF4FE51321C9EA1600C758EF /* LeftButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BF4FE51121C9EA1500C758EF /* LeftButton.png */; };
 		BF4FE51421C9EA1600C758EF /* RightButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BF4FE51221C9EA1600C758EF /* RightButton.png */; };
 		BF4FE51921CA011700C758EF /* ConsonantButton.png in Resources */ = {isa = PBXBuildFile; fileRef = BF4FE51521CA011600C758EF /* ConsonantButton.png */; };
@@ -146,6 +148,8 @@
 		BF106FFE21BF41ED00DC6207 /* jasmine.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = jasmine.jpg; path = Simon/EasterEgg/jasmine.jpg; sourceTree = SOURCE_ROOT; };
 		BF106FFF21BF41ED00DC6207 /* AWholeNewWorld.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = AWholeNewWorld.mp3; path = Simon/EasterEgg/AWholeNewWorld.mp3; sourceTree = SOURCE_ROOT; };
 		BF10700321BF791F00DC6207 /* LetterNumberStim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterNumberStim.swift; sourceTree = "<group>"; };
+		BF2082E1229E4F0100A66D69 /* RightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RightArrow.png; sourceTree = "<group>"; };
+		BF2082E2229E4F0100A66D69 /* LeftArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeftArrow.png; sourceTree = "<group>"; };
 		BF4FE51121C9EA1500C758EF /* LeftButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = LeftButton.png; path = Buttons/LeftButton.png; sourceTree = SOURCE_ROOT; };
 		BF4FE51221C9EA1600C758EF /* RightButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RightButton.png; path = Buttons/RightButton.png; sourceTree = SOURCE_ROOT; };
 		BF4FE51521CA011600C758EF /* ConsonantButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ConsonantButton.png; path = Buttons/ConsonantButton.png; sourceTree = SOURCE_ROOT; };
@@ -411,6 +415,8 @@
 				BF106FC721BF417800DC6207 /* 7.png */,
 				BF106FE521BF417900DC6207 /* 8.png */,
 				BF106FE221BF417800DC6207 /* 9.png */,
+				BF2082E2229E4F0100A66D69 /* LeftArrow.png */,
+				BF2082E1229E4F0100A66D69 /* RightArrow.png */,
 				BF106FCB21BF417800DC6207 /* ColouredStim */,
 			);
 			path = Stimulus;
@@ -629,6 +635,7 @@
 				BF54343D2293C4120057E28A /* HF2.png in Resources */,
 				BF87022722952D35008413B2 /* HappyNeutral.html in Resources */,
 				BF54343A2293C4120057E28A /* NF1.png in Resources */,
+				BF2082E3229E4F0200A66D69 /* RightArrow.png in Resources */,
 				BF5434382293C4120057E28A /* AF1.png in Resources */,
 				BF5434342293C4120057E28A /* AM4.png in Resources */,
 				BF884E07205A2044002262DB /* LaunchScreen.storyboard in Resources */,
@@ -659,6 +666,7 @@
 				BF51660D20B6503400112630 /* FruitButton.png in Resources */,
 				BF5434362293C4120057E28A /* NF3.png in Resources */,
 				BF106FFA21BF417900DC6207 /* 9.png in Resources */,
+				BF2082E4229E4F0200A66D69 /* LeftArrow.png in Resources */,
 				BF106FF621BF417900DC6207 /* rv4.jpg in Resources */,
 				BF5434402293C4120057E28A /* HM3.png in Resources */,
 				BF4FE51A21CA011700C758EF /* EvenButton.png in Resources */,
