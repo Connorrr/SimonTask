@@ -1,2 +1,2 @@
-# GoNoGo Task
-This is a GoNoGo Task which is based on the Task Switching App.  It is developed for the iPad using Swift.
+# Simon Task
+This is a Simon Task which is based on the GoNoGo App.  It is developed for the iPad using Swift.
