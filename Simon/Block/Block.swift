@@ -136,6 +136,18 @@ class Block {
             isLeft.append(startSide)
         }
         
+        if blockType == .practice {
+            isLeft = []
+            for i in 0 ..< numberOfTrials!{
+                if (i%2 == 0){
+                    isLeft.append(true)
+                }else{
+                    isLeft.append(false)
+                }
+            }
+            isLeft.shuffle()
+        }
+        
         //  Put the stimulus in list in order
         for i in stim1List {
             trialImageFilenames.append(i)
