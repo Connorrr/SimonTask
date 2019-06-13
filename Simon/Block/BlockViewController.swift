@@ -35,6 +35,7 @@ class BlockViewController: UIViewController {
         return currentTrial-1
     }
     var currentTrial : Int = 1
+    var congruentTrialIndex = 0
     var trialData = TrialData()
     var trialTime : Double?
     var trialStartTime : Date?
@@ -85,17 +86,17 @@ class BlockViewController: UIViewController {
         }
         
         view.constraints.forEach{constraint in
-            if constraint.identifier == "ArrowCenterX" {        // Get arrow center x constraint
-                constraint.isActive = false                     // delete it
-                let newConstraint = NSLayoutConstraint(item: arrowImage,        //create new
+            if constraint.identifier == "ArrowCenterX" {                        // Get arrow center x constraint
+                constraint.isActive = false                                     // delete it
+                let newConstraint = NSLayoutConstraint(item: arrowImage,        // create new
                                                        attribute: .centerX,
                                                        relatedBy: .equal,
                                                        toItem: view,
                                                        attribute: .centerX,
                                                        multiplier: multiplier,
                                                        constant: 0.0)
-                newConstraint.identifier = "ArrowCenterX"   // rename it
-                newConstraint.isActive = true               // add it
+                newConstraint.identifier = "ArrowCenterX"                       // rename it
+                newConstraint.isActive = true                                   // add it
             }
             if constraint.identifier == "StimCenterX" {
                 constraint.isActive = false
@@ -157,15 +158,31 @@ class BlockViewController: UIViewController {
     var blankTimer : Timer?
     var repeatTimer : Timer?
     
+    func setCongruency(isCongruent: Bool, isLeft: Bool){
+        if isCongruent{
+            if isLeft{
+                arrowImage.image = #imageLiteral(resourceName: "LeftArrow.png")
+            }else{
+                arrowImage.image = #imageLiteral(resourceName: "RightArrow.png")
+            }
+        }else{
+            if isLeft {
+                arrowImage.image = #imageLiteral(resourceName: "RightArrow.png")
+            }else{
+                arrowImage.image = #imageLiteral(resourceName: "LeftArrow.png")
+            }
+        }
+    }
+    
     func executeBlock() {
-        print(block!.trialImageFilenames[trialIndex] + ".png")
-        self.stimImage.image = UIImage(named: block!.trialImageFilenames[trialIndex]) //  No images in this version
+        congruentTrialIndex = block!.trialIndexs[trialIndex]
+        setStimSide(isLeft: block!.isLeft[congruentTrialIndex])
+        setCongruency(isCongruent: block!.isCongruent[congruentTrialIndex], isLeft: block!.isLeft[congruentTrialIndex])
+        self.stimImage.image = UIImage(named: block!.trialImageFilenames[congruentTrialIndex])
         
         if StaticVars.id == "JasmineTest" {
             self.stimImage.image = #imageLiteral(resourceName: "jasmine.jpg")
         }
-        
-        //setButtonLabels(isEvenOddTrial: block!.trials![trialIndex].isEvenOdd!)
         
         setUpTrialData()
         
@@ -278,7 +295,7 @@ class BlockViewController: UIViewController {
     }
     
     func checkCorr() {
-        if (block!.isCongruent[trialIndex]){
+        if (block!.isCongruent[congruentTrialIndex]){
             if (wasResponse){
                 trialData.corr = 1
             }else{

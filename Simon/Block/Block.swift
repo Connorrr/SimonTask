@@ -17,6 +17,7 @@ class Block {
     var isCongruent : [Bool] = []
     var trialImageFilenames : [String] = []
     var trialIndexs : [Int] = []        //  Use thesee indexes to pull congruency and stimulus filenames
+    var isLeft : [Bool] = []            //  Is the arrow and image to be displayed on the left side of the screen
     
     
     /// Builds the isGoTrialList in this class based on whether its a practice block or not
@@ -64,6 +65,7 @@ class Block {
         var numStim1F = 25
         var numStim2M = 25
         var numStim2F = 25
+        var startSide = Bool().randomBool()     //  True for left
         
         
         switch blockType {
@@ -97,12 +99,20 @@ class Block {
             imageNums.shuffle()
             for i in 1 ... numStim1M {
                 stim2List.append(stim2Suffix + "M" + String(imageNums[i%6]))
+                if (i%6 == 0){
+                    startSide = !startSide
+                }
+                isLeft.append(startSide)
             }
         
             //  Set go male names
             imageNums.shuffle()
             for i in 1 ... numStim2M {
                 stim1List.append(stim1Suffix + "M" + String(imageNums[i%6]))
+                if (i%6 == 0){
+                    startSide = !startSide
+                }
+                isLeft.append(startSide)
             }
         }
         
@@ -110,12 +120,20 @@ class Block {
         imageNums.shuffle()
         for i in 1 ... numStim1F {
             stim2List.append(stim2Suffix + "F" + String(imageNums[i%6]))
+            if (i%6 == 0){
+                startSide = !startSide
+            }
+            isLeft.append(startSide)
         }
         
         //  set go female names
         imageNums.shuffle()
         for i in 1 ... numStim2F {
             stim1List.append(stim1Suffix + "F" + String(imageNums[i%6]))
+            if (i%6 == 0){
+                startSide = !startSide
+            }
+            isLeft.append(startSide)
         }
         
         //  Put the stimulus in list in order
