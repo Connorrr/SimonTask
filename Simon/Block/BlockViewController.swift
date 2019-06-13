@@ -36,6 +36,9 @@ class BlockViewController: UIViewController {
     }
     var currentTrial : Int = 1
     var congruentTrialIndex = 0
+    var isTrialCongruent = false
+    var isTrialLeft = false
+    var isTrialLeftArrow = false
     var trialData = TrialData()
     var trialTime : Double?
     var trialStartTime : Date?
@@ -115,11 +118,7 @@ class BlockViewController: UIViewController {
     
     @IBAction func leftButtonPressed(_ sender: UIButton) {
         trialData.response = "left"
-        /*if block!.trials![trialIndex].isEvenOdd! {
-            checkCorr()
-        } else {
-            checkCorr()
-        }*/
+        checkCorr(pressedLeft: true, timedOut: false)
         wasResponse = true
         forceProgress()
     }
@@ -127,19 +126,20 @@ class BlockViewController: UIViewController {
     //  NOT USED
     @IBAction func fruitButtonPressed(_ sender: UIButton) {
         trialData.response = "fruit"
-        checkCorr()
+        //checkCorr()
         forceProgress()
     }
     
     //  NOT USED
     @IBAction func redButtonPressed(_ sender: UIButton) {
         trialData.response = "red"
-        checkCorr()
+        //checkCorr(pressedLeft: <#T##Bool?#>, timedOut: <#T##Bool#>)
         forceProgress()
     }
     
     @IBAction func rightButtonPressed(_ sender: UIButton) {
         trialData.response = "right"
+        checkCorr(pressedLeft: false, timedOut: false)
         wasResponse = true
         forceProgress()
     }
@@ -158,26 +158,39 @@ class BlockViewController: UIViewController {
     var blankTimer : Timer?
     var repeatTimer : Timer?
     
+    
+    /// This function defines the variables that set up the visual aspects of the trial
+    ///
+    /// - Parameters:
+    ///   - isCongruent: is this trial congruent
+    ///   - isLeft: is it on the image on the left side of the screen
     func setCongruency(isCongruent: Bool, isLeft: Bool){
         if isCongruent{
             if isLeft{
+                isTrialLeftArrow = true         //  Which way is the arrow pointing
                 arrowImage.image = #imageLiteral(resourceName: "LeftArrow.png")
             }else{
                 arrowImage.image = #imageLiteral(resourceName: "RightArrow.png")
+                isTrialLeftArrow = false
             }
         }else{
             if isLeft {
                 arrowImage.image = #imageLiteral(resourceName: "RightArrow.png")
+                isTrialLeftArrow = false
             }else{
                 arrowImage.image = #imageLiteral(resourceName: "LeftArrow.png")
+                isTrialLeftArrow = true
             }
         }
     }
     
     func executeBlock() {
         congruentTrialIndex = block!.trialIndexs[trialIndex]
-        setStimSide(isLeft: block!.isLeft[congruentTrialIndex])
-        setCongruency(isCongruent: block!.isCongruent[congruentTrialIndex], isLeft: block!.isLeft[congruentTrialIndex])
+        isTrialLeft = block!.isLeft[congruentTrialIndex]
+        isTrialCongruent = block!.isCongruent[congruentTrialIndex]
+        
+        setStimSide(isLeft: isTrialLeft)
+        setCongruency(isCongruent: isTrialCongruent, isLeft: isTrialLeft)
         self.stimImage.image = UIImage(named: block!.trialImageFilenames[congruentTrialIndex])
         
         if StaticVars.id == "JasmineTest" {
@@ -231,7 +244,7 @@ class BlockViewController: UIViewController {
     }
     
     func displayBlank() {
-        checkCorr()
+        checkCorr(pressedLeft: nil, timedOut: true)
         getResponseTime()
         self.feedbackLabel.isHidden = true
         self.fixationCross.textColor = .black
@@ -294,19 +307,24 @@ class BlockViewController: UIViewController {
         trialData.rt = rT
     }
     
-    func checkCorr() {
-        if (block!.isCongruent[congruentTrialIndex]){
-            if (wasResponse){
-                trialData.corr = 1
+    func checkCorr(pressedLeft: Bool?, timedOut: Bool) {
+        
+        if !timedOut{
+            if pressedLeft!{
+                if isTrialLeftArrow {
+                    trialData.corr = 1
+                }else{
+                    trialData.corr = 0
+                }
             }else{
-                trialData.corr = 0
+                if isTrialLeftArrow {
+                    trialData.corr = 0
+                }else{
+                    trialData.corr = 1
+                }
             }
         }else{
-            if (wasResponse){
-                trialData.corr = 0
-            }else{
-                trialData.corr = 1
-            }
+            trialData.corr = 0
         }
     }
     
