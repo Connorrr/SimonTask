@@ -332,10 +332,10 @@ class BlockViewController: UIViewController {
     func setBoarder(isSwitch: Bool) {
         if isSwitch {
             //self.boarderView.isHidden = false
-            trialData.isSwitchTrial = 1
+            //trialData.isSwitchTrial = 1
         } else {
             //self.boarderView.isHidden = true
-            trialData.isSwitchTrial = 0
+            //trialData.isSwitchTrial = 0
         }
     }
     

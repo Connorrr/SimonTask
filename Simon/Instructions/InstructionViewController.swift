@@ -13,7 +13,7 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     var experimentStructure : [BlockType] = [.practice,.angryneutral, .happyneutral]
     let isEvenOddStructure : [Bool?] = [nil, true, false, nil]                  //  This is used to define the single blocks types and whether they are Task A (even,odd) or B (vowel,consonant)
-    let numBlocks = 4
+    let numBlocks = 3
     
     var blockProgress : Int = 0
     var instructionsState : InstructionsTextState?
@@ -131,7 +131,8 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     // The Goodbye text takes gives feedback for percentage correct so it needs a different method to the setText func
     func setGoodbyeText() {
-        instructionsTextView.text = "Great job! Thank you for completing this session!\n\n You got \(Int(logFileMaker!.perCorr))% Correct"
+        //instructionsTextView.text = "Great job! Thank you for completing this session!\n\n You got \(Int(logFileMaker!.perCorr))% Correct"
+        instructionsTextView.text = "Great job! Thank you for completing this session!"
     }
     
     // Returns true if succeeded
