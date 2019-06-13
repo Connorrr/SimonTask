@@ -278,7 +278,7 @@ class BlockViewController: UIViewController {
     }
     
     func checkCorr() {
-        if (block!.isGoTrial[trialIndex]){
+        if (block!.isCongruent[trialIndex]){
             if (wasResponse){
                 trialData.corr = 1
             }else{
