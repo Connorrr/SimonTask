@@ -15,12 +15,13 @@ class BlockViewController: UIViewController {
     @IBOutlet weak var feedbackLabel: UILabel!
     @IBOutlet weak var stimImage: UIImageView!
     @IBOutlet weak var fixationCross: UILabel!
+    @IBOutlet weak var arrowImage: UIImageView!
     
     @IBOutlet weak var stimLabel: UILabel!
     @IBOutlet weak var leftButton: ResponseButton!
     @IBOutlet weak var fruitButton: ResponseButton!     //  This button is not used in the TS app
     @IBOutlet weak var redButton: ResponseButton!       //  This button is not used in the TS app
-    @IBOutlet weak var goButton: ResponseButton!
+    @IBOutlet weak var rightButton: ResponseButton!
     
     var blockType : BlockType?
     var isEvenOdd : Bool?
@@ -39,6 +40,8 @@ class BlockViewController: UIViewController {
     var trialStartTime : Date?
     var audioPlayer = AVAudioPlayer()
     
+    private var leftLocation : CGFloat?
+    private var rightLocation : CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,15 +51,15 @@ class BlockViewController: UIViewController {
         fruitButton.alpha = 0.0
         leftButton.alpha = 0.0
         
-        print("The block type is:  ")
-        dump(blockType)
+        leftLocation = view.frame.width/4
+        rightLocation = view.frame.width*3/4
+        
+        setStimSide(isLeft: true)
         
         if StaticVars.id == "JasmineTest" {
             playEasterEgg()
         }
-        
-        setButtonLabels()
-        
+                
         //let random = false
         if blockType != nil {
             
@@ -72,6 +75,42 @@ class BlockViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    //  Sets the stim and arrow side
+    func setStimSide(isLeft: Bool){
+        
+        var multiplier : CGFloat = 1.5
+        if (isLeft){
+            multiplier = 0.5
+        }
+        
+        view.constraints.forEach{constraint in
+            if constraint.identifier == "ArrowCenterX" {        // Get arrow center x constraint
+                constraint.isActive = false                     // delete it
+                let newConstraint = NSLayoutConstraint(item: arrowImage,        //create new
+                                                       attribute: .centerX,
+                                                       relatedBy: .equal,
+                                                       toItem: view,
+                                                       attribute: .centerX,
+                                                       multiplier: multiplier,
+                                                       constant: 0.0)
+                newConstraint.identifier = "ArrowCenterX"   // rename it
+                newConstraint.isActive = true               // add it
+            }
+            if constraint.identifier == "StimCenterX" {
+                constraint.isActive = false
+                let newConstraint = NSLayoutConstraint(item: stimImage,
+                                                       attribute: .centerX,
+                                                       relatedBy: .equal,
+                                                       toItem: view,
+                                                       attribute: .centerX,
+                                                       multiplier: multiplier,
+                                                       constant: 0.0)
+                newConstraint.identifier = "StimCenterX"
+                newConstraint.isActive = true
+            }
+        }
     }
     
     @IBAction func leftButtonPressed(_ sender: UIButton) {
@@ -105,7 +144,7 @@ class BlockViewController: UIViewController {
     }
     
     func setButtonLabels() {
-        goButton.setImage(#imageLiteral(resourceName: "GoButton.png"), for: .normal)
+        rightButton.setImage(#imageLiteral(resourceName: "GoButton.png"), for: .normal)
     }
     
     //  Called after the response button is pressed
@@ -143,6 +182,7 @@ class BlockViewController: UIViewController {
     func displayFixation() {
         self.fixationCross.isHidden = false
         self.stimImage.isHidden = true
+        self.arrowImage.isHidden = true
         self.stimLabel.isHidden = true
         //self.boarderView.isHidden = true
         self.setButtonVisibility(isHidden: true)
@@ -150,8 +190,9 @@ class BlockViewController: UIViewController {
     
     func displayTrial() {
         //self.setBoarder(isSwitch: block!.trials![trialIndex].isSwitchTrial!)
-        self.fixationCross.isHidden = true
+        self.fixationCross.isHidden = false
         self.stimImage.isHidden = false
+        self.arrowImage.isHidden = false
         self.stimLabel.isHidden = true
         self.setButtonVisibility(isHidden: false)
         self.responseTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { (responseTimer) in self.displayBlank() }) //Set to 50000 so it is essentially waiting for a response only
@@ -160,8 +201,9 @@ class BlockViewController: UIViewController {
     
     // THERE IS NO FEEDBACK IN THE TS APP SO THIS IS SKIPPED
     func displayResponse () {
-        self.fixationCross.isHidden = true
+        self.fixationCross.isHidden = false
         self.stimImage.isHidden = true
+        self.arrowImage.isHidden = true
         self.stimLabel.isHidden = true
         //self.boarderView.isHidden = true
         self.setButtonVisibility(isHidden: true)
@@ -179,6 +221,7 @@ class BlockViewController: UIViewController {
         self.fixationCross.text = "+"
         self.fixationCross.isHidden = true
         self.stimImage.isHidden = true
+        self.arrowImage.isHidden = true
         self.stimLabel.isHidden = true
         //self.boarderView.isHidden = true
         let defaults = UserDefaults.standard
@@ -225,7 +268,7 @@ class BlockViewController: UIViewController {
         self.leftButton.isHidden = isHidden
         self.fruitButton.isHidden = isHidden
         self.redButton.isHidden = isHidden
-        self.goButton.isHidden = isHidden
+        self.rightButton.isHidden = isHidden
     }
     
     func getResponseTime() {

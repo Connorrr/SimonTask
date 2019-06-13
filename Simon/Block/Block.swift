@@ -28,7 +28,7 @@ class Block {
         if (blockType == .practice){
             numberOfTrials = 10
         }else{
-            numberOfTrials = 60
+            numberOfTrials = 100
         }
         
         buildGoNoGo()
