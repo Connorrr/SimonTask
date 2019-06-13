@@ -114,11 +114,12 @@ class BlockViewController: UIViewController {
     
     @IBAction func leftButtonPressed(_ sender: UIButton) {
         trialData.response = "left"
-        if block!.trials![trialIndex].isEvenOdd! {
+        /*if block!.trials![trialIndex].isEvenOdd! {
             checkCorr()
         } else {
             checkCorr()
-        }
+        }*/
+        wasResponse = true
         forceProgress()
     }
     
@@ -136,8 +137,8 @@ class BlockViewController: UIViewController {
         forceProgress()
     }
     
-    @IBAction func goButtonPressed(_ sender: UIButton) {
-        trialData.response = "Go"
+    @IBAction func rightButtonPressed(_ sender: UIButton) {
+        trialData.response = "right"
         wasResponse = true
         forceProgress()
     }
