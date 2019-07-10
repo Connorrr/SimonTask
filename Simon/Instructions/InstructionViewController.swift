@@ -47,18 +47,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         case .breakText:
             setText("Break")
             setTestTimer(isFinished: false)
-            switch experimentStructure[blockProgress] {
-            case .angryneutral:
-                setText("AngryNeutral")
-            case .happyneutral:
-                setText("HappyNeutral")
-            case .neutralangry:
-                setText("NeutralAngry")
-            case .neutralhappy:
-                setText("NeutralHappy")
-            case .practice:
-                break
-            }
+            setText("BlockInstructions")
         case .practiceEnd:
             setText("PracticeEnd")
             setTestTimer(isFinished: false)

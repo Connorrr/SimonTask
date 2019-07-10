@@ -53,6 +53,10 @@ class BlockViewController: UIViewController {
         //  Set middle buttons to be invis in the containers
         redButton.alpha = 0.0
         fruitButton.alpha = 0.0
+        if (StaticVars.isAbstact){
+            stimImage.alpha = 0.0
+        }
+        
         
         leftLocation = view.frame.width/4
         rightLocation = view.frame.width*3/4

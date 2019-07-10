@@ -54,12 +54,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="lOU-Iy-K3e">
+                                <rect key="frame" x="1013" y="70" width="51" height="31"/>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="tKK-AE-umW" firstAttribute="height" secondItem="3rb-4E-hqa" secondAttribute="height" id="8aZ-j4-4vN"/>
                             <constraint firstItem="3rb-4E-hqa" firstAttribute="top" secondItem="zjG-bv-Umc" secondAttribute="bottom" constant="78" id="EPo-vc-2G0"/>
+                            <constraint firstItem="Zh3-kQ-768" firstAttribute="trailing" secondItem="lOU-Iy-K3e" secondAttribute="trailing" constant="50" id="Igv-na-gjD"/>
                             <constraint firstItem="tKK-AE-umW" firstAttribute="centerX" secondItem="3rb-4E-hqa" secondAttribute="centerX" id="JEC-xb-Kxz"/>
+                            <constraint firstItem="lOU-Iy-K3e" firstAttribute="top" secondItem="Zh3-kQ-768" secondAttribute="top" constant="50" id="JFn-DP-3UY"/>
                             <constraint firstItem="yU5-BK-IdP" firstAttribute="top" secondItem="3rb-4E-hqa" secondAttribute="bottom" constant="71" id="JfE-a2-hpM"/>
                             <constraint firstItem="yU5-BK-IdP" firstAttribute="centerX" secondItem="Zh3-kQ-768" secondAttribute="centerX" id="LjD-sX-fZG"/>
                             <constraint firstItem="3rb-4E-hqa" firstAttribute="centerX" secondItem="Zh3-kQ-768" secondAttribute="centerX" id="OEe-bb-Jya"/>
@@ -72,6 +77,7 @@
                         <viewLayoutGuide key="safeArea" id="Zh3-kQ-768"/>
                     </view>
                     <connections>
+                        <outlet property="abstractSwitch" destination="lOU-Iy-K3e" id="Gcx-z1-FZm"/>
                         <outlet property="groupNumberTextField" destination="tKK-AE-umW" id="zmJ-xq-XHv"/>
                         <outlet property="idField" destination="3rb-4E-hqa" id="LmX-pW-WYd"/>
                         <outlet property="startButton" destination="yU5-BK-IdP" id="or9-LE-hSO"/>
@@ -172,9 +178,9 @@
                                 <rect key="frame" x="50" y="646" width="1012" height="138"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISt-hX-lUc" userLabel="LeftButton" customClass="ResponseButton" customModule="SimonTask" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="224" height="138"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="238" height="138"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                        <state key="normal" title="Vowel" image="LeftButton.png">
+                                        <state key="normal" title="Vowel" image="left.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -182,7 +188,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RR1-JN-C05" userLabel="FruitButton" customClass="ResponseButton" customModule="SimonTask" customModuleProvider="target">
-                                        <rect key="frame" x="262.5" y="0.0" width="224" height="138"/>
+                                        <rect key="frame" x="258" y="0.0" width="238" height="138"/>
                                         <state key="normal" title="Less Than" image="FruitButton.png">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -191,7 +197,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQ0-d3-tlA" userLabel="RedButton" customClass="ResponseButton" customModule="SimonTask" customModuleProvider="target">
-                                        <rect key="frame" x="525.5" y="0.0" width="224" height="138"/>
+                                        <rect key="frame" x="516" y="0.0" width="238" height="138"/>
                                         <state key="normal" title="Even" image="RedButton.png">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
@@ -200,9 +206,9 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DTH-RD-j9R" userLabel="RightButton" customClass="ResponseButton" customModule="SimonTask" customModuleProvider="target">
-                                        <rect key="frame" x="788" y="0.0" width="224" height="138"/>
+                                        <rect key="frame" x="774" y="0.0" width="238" height="138"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                        <state key="normal" title="Consonant" image="RightButton.png">
+                                        <state key="normal" title="Consonant" image="right.png">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
@@ -263,9 +269,9 @@
         <image name="AF2" width="506" height="650"/>
         <image name="FruitButton.png" width="100.08000183105469" height="100.08000183105469"/>
         <image name="LeftArrow.png" width="634.5" height="154.5"/>
-        <image name="LeftButton.png" width="100.08000183105469" height="100.08000183105469"/>
         <image name="RedButton.png" width="100.08000183105469" height="100.08000183105469"/>
-        <image name="RightButton.png" width="100.08000183105469" height="100.08000183105469"/>
+        <image name="left.png" width="160" height="160"/>
+        <image name="right.png" width="160" height="160"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Bbe-oS-AWF"/>
