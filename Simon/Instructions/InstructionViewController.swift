@@ -31,7 +31,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         
         logFileMaker = LogFileMaker(fileName: "\(StaticVars.id)-\(getDateString())")
         
-        setExperimentStructure() 
+        setExperimentStructure()
         
         let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.viewTapped))
         instructionsTextView.addGestureRecognizer(tapRecognizer)
@@ -96,7 +96,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         if (StaticVars.group == 1){
             index = [0, 1]
         }else if(StaticVars.group == 2){
-            index = [0, 1]
+            index = [1, 0]
         }else{
             print("Error: InstructionViewcontroller: setExperimetnStructure: group number must be between 1 - 2")
         }
