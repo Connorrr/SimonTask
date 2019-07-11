@@ -23,7 +23,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
         if (idField.text!.count == 0){
             showAlert(title: "Error", message: "Please make sure that the ID Field is completed")
         }else if(!groupNumberTextField.text!.isInt){
-            showAlert(title: "Error", message: "Please make sure the group is a number between 1 - 4")
+            showAlert(title: "Error", message: "Please make sure the group is a number between 1 - 2")
         }else{
             beginTrials()
         }
@@ -83,7 +83,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate{
     
     //  Check that the input is an integer
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let invalidCharacters = CharacterSet(charactersIn: "1234").inverted
+        let invalidCharacters = CharacterSet(charactersIn: "12").inverted
         let shouldUpdate = (string.rangeOfCharacter(from: invalidCharacters) == nil && (textField.text! + string).count < 2)
         if shouldUpdate {
             if (string.count != 0){
